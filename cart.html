@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="./cart.css">
+</head>
+<body>
+<div class="container">
+  <h2>Your product</h2>
+  <div id="cartItems"></div>
+  <div id="cartTotal">Total: $0.00</div>
+  <button class="btn" onclick="goBack()">← Back to Shop</button>
+  <a href="./productbuy.html">
+    <button>Buy</button>
+  </a>
+  
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartItems = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+
+  function renderCart() {
+    cartItems.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'cart-item';
+      const subtotal = (item.qty * item.price).toFixed(2);
+      itemDiv.innerHTML = `
+        <span><strong>Product:</strong> ${item.name}</span>
+        <span><strong>Quantity:</strong> ${item.qty}</span>
+        <span><strong>Subtotal:</strong> $${subtotal}</span>
+        <button class="remove-btn" onclick="removeItem(${index})">Cancel This Product</button>
+      `;
+      cartItems.appendChild(itemDiv);
+      total += item.qty * item.price;
+    });
+
+    cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+  }
+
+  function goBack() {
+    location.href = 'product.html';
+  }
+
+  renderCart();
+</script>
+
+</body>
+</html>

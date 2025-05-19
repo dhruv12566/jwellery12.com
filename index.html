@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jwellery</title>
+  <link rel="stylesheet" href="./index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="header">
+    <h2 class="slide-in">A necklace isn't just an accessory. It's a feeling.</h2>
+    <div class="header1">
+      <a href="./about.html">About</a>
+    </div>
+    <div class="header2">
+      <a href="./product.html">Products</a>
+    </div>
+    <div class="header3">
+      <a href="#target-section">Contact</a>
+    </div>
+  </div>
+  <div class="main">
+    <img src="./image/logo.jpg">
+  </div>
+  <div class="slider">
+    <div class="slides">
+      <div class="slide"><img src="./image/beyza-yurtkuran-Rg7QGQ6maGk-unsplash.jpg" alt="Slide 1" /></div>
+      <div class="slide"><img src="./image/eric-fung-Z0GZrpwcc5Y-unsplash.jpg" alt="Slide 2" /></div>
+      <div class="slide"><img src="./image/pat-kwon-ZZOGqLb9CXE-unsplash.jpg" alt="Slide 3" /></div>
+    </div>
+    <div class="buttons">
+      <button class="btn" id="prev">&#10094; </button>
+      <button class="btn" id="next"> &#10095;</button>
+
+    </div>
+  </div>
+<div class="main1">
+  <h1>There are many veraietys</h1>
+</div>
+  <div class="container">
+    <button class="nav-btn left-btn" onclick="scrollToRight()">◀</button>
+    <button class="nav-btn right-btn" onclick="scrollToLeft()">▶</button>
+    
+    <div class="image-row" id="imageRow">
+       <img src="./image/ear rings.jpg" alt="1">
+      <img src="./image/pexels-the-glorious-studio-3584518-29986273.jpg" alt="2">
+      <img src="./image/atul-mohan-QkZgJ7jWzIs-unsplash.jpg" alt="3">
+      <img src="./image/logo1.jpg" alt="4">
+      <img src="./image/download (1).jpg"  alt="5">
+      <img src="./image/download (2).jpg" alt="6">
+      <img src="./image/download (3).jpg" alt="7">
+      <img src="./image/download (4).jpg" alt="8">
+      <img src="./image/download.jpg" alt="9">
+      <img src="./image/images (1).jpg" alt="10">
+      <img src="./image/images (2).jpg" alt="11">
+      <img src="./image/images.jpg" alt="12">
+      <img src="./image/images (4).jpg" alt="13">
+      <img src="./image/images (3).jpg" alt="14">
+      <img src="./image/images (5).jpg" alt="15">
+      <img src="./image/images (6).jpg" alt="16">
+      <img src="./image/images (7).jpg" alt="17">
+      <img src="./image/images (8).jpg" alt="18">
+      <img src="./image/images (9).jpg" alt="19">
+      <img src="./image/images (10).jpg" alt="20">
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <img src="./image/prahant-photo-films-vbsN7MUXyT4-unsplash.jpg" alt="Product 1" />
+      <h3>Full set of neckleace</h3>
+      <button  onclick="window.location.href='buy.html'" class="buy-btn">Buy</button>
+    </div>
+    <div class="card">
+      <img src="./image/kateryna-hliznitsova-ceSCZzjTReg-unsplash.jpg" alt="Product 2" />
+      <h3>Neckleace</h3>
+      <button  onclick="window.location.href='buy1.html'" class="buy-btn">Buy</button>
+    </div>
+    <div class="card">
+      <img src="./image/prahant-photo-films-cM9YmUlECWY-unsplash.jpg" alt="Product 3" />
+      <h3>Pendent with earing</h3>
+      <button onclick="window.location.href='buy2.html'" class="buy-btn">Buy</button>
+    </div>
+    <div class="card">
+      <img src="./image/atul-mohan-QkZgJ7jWzIs-unsplash.jpg" alt="Product 4" />
+      <h3>A pendent</h3>
+      <button onclick="window.location.href='buy3.html'" class="buy-btn">Buy</button>
+    </div>
+  </div>
+  <div id="target-section" class="mains">
+    <div class="container">
+      <div class="left">
+        <h2>Get In Touch With Us Now!</h2>
+        <div class="info-box">
+          <i class="fas fa-phone"></i>
+          <div class="info-text">
+            <strong>Phone Number</strong>
+            <span>+91 98988 62354</span>
+          </div>
+        </div>
+        <div class="info-box">
+          <i class="fas fa-envelope"></i>
+          <div class="info-text">
+            <strong>Email</strong>
+            <span>jayppt122@gmail.com<br>tejasppt244@gmail.com</span>
+          </div>
+        </div>
+        <div class="info-box">
+          <i class="fas fa-location"></i>
+          <div class="info-text">
+            <strong>Location</strong>
+            <span>18, shiyamvilla,<br>Anand, Gujarat - 388325</span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="right">
+        <h2>Contact Us</h2>
+        <form>
+          <div class="form-group">
+            <input type="text" placeholder="First Name *" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Last Name">
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="Mobile No *" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email ID *" required>
+          </div>
+          <div class="form-group">
+            <textarea rows="4" placeholder="Message"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+    </div>
+  
+  </div>
+  <script>
+   const slides = document.querySelector('.slides');
+  const slideCount = document.querySelectorAll('.slide').length;
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slideCount;
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+    showSlide(currentIndex);
+  }
+
+  nextBtn.addEventListener('click', nextSlide);
+  prevBtn.addEventListener('click', prevSlide);
+
+  setInterval(nextSlide, 3000);
+
+    function scrollToLeft() {
+      document.getElementById('imageRow').scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  
+    function scrollToRight() {
+      document.getElementById('imageRow').scrollBy({ left: -300, behavior: 'smooth' });
+    }
+
+    function scrollDown() {
+    document.getElementById("target-section").scrollIntoView({ behavior: "smooth" });
+  }
+  </script>
+</body>
+</html>

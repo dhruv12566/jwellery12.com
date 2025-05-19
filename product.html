@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stylish Product Page with Images</title>
+  <link rel="stylesheet" href="./product.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <h2>This is our products</h2>
+  <div class="cart" onclick="goToCart()">
+    <i class="fas fa-shopping-cart"></i> <span class="cart-count" id="cartCount">0</span>
+  </div>
+</header>
+
+<div class="products" id="productList"></div>
+
+<script>
+  const products = [
+    { id: 1, name: 'Product 1', price: '11.00', image: 'product/gold.jpg' },
+    { id: 2, name: 'Product 2', price: '12.00', image: 'images/product2.jpg' },
+    { id: 3, name: 'Product 3', price: '13.00', image: 'images/product3.jpg' },
+    { id: 4, name: 'Product 4', price: '14.00', image: 'images/product4.jpg' },
+    { id: 5, name: 'Product 5', price: '15.00', image: 'images/product5.jpg' },
+    { id: 6, name: 'Product 6', price: '16.00', image: 'images/product6.jpg' },
+    { id: 7, name: 'Product 7', price: '17.00', image: 'images/product7.jpg' },
+    { id: 8, name: 'Product 8', price: '18.00', image: 'images/product8.jpg' },
+    { id: 9, name: 'Product 9', price: '19.00', image: 'images/product9.jpg' },
+    { id: 10, name: 'Product 10', price: '20.00', image: 'images/product10.jpg' },
+    { id: 11, name: 'Product 11', price: '21.00', image: 'images/product11.jpg' },
+    { id: 12, name: 'Product 12', price: '22.00', image: 'images/product12.jpg' },
+    { id: 13, name: 'Product 13', price: '23.00', image: 'images/product13.jpg' },
+    { id: 14, name: 'Product 14', price: '24.00', image: 'images/product14.jpg' },
+    { id: 15, name: 'Product 15', price: '25.00', image: 'images/product15.jpg' },
+    { id: 16, name: 'Product 16', price: '26.00', image: 'images/product16.jpg' },
+    { id: 17, name: 'Product 17', price: '27.00', image: 'images/product17.jpg' },
+    { id: 18, name: 'Product 18', price: '28.00', image: 'images/product18.jpg' },
+    { id: 19, name: 'Product 19', price: '29.00', image: 'images/product19.jpg' },
+    { id: 20, name: 'Product 20', price: '30.00', image: 'images/product20.jpg' }
+  ];
+
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const productList = document.getElementById('productList');
+  const cartCount = document.getElementById('cartCount');
+
+  products.forEach(product => {
+    const div = document.createElement('div');
+    div.className = 'product';
+    div.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <h4>${product.name}</h4>
+      <p>$${product.price}</p>
+      <button onclick="addToCart(${product.id})">Buy</button>
+    `;
+    productList.appendChild(div);
+  });
+
+  function addToCart(productId) {
+    const item = products.find(p => p.id === productId);
+    const existing = cart.find(c => c.id === item.id);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ ...item, qty: 1 });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    cartCount.textContent = count;
+  }
+
+  function goToCart() {
+    location.href = 'cart.html';
+  }
+
+  updateCartCount();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color:rgb(27, 94, 153);
+  padding: 30px;
+  color: #111;
+}
+.container {
+  color: antiquewhite;
+  max-width: 600px;
+  background-color: rgb(2, 2, 71);
+  padding: 30px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h2 {
+  margin-top: 0;
+}
+.cart-item {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.cart-item span {
+  font-size: 16px;
+}
+.remove-btn {
+  width: fit-content;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.remove-btn:hover {
+  background-color: darkred;
+}
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #111827;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #1f2937;
+}
+#cartTotal {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+}

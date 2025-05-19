@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loading...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: radial-gradient(circle, #1b1b1b 0%, #000000 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Playfair Display', serif;
+      overflow: hidden;
+    }
+
+    .loader-container {
+      text-align: center;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    .gold-ring {
+      width: 80px;
+      height: 80px;
+      border: 5px solid rgba(212, 175, 55, 0.15);
+      border-top: 5px solid #d4af37;
+      border-radius: 50%;
+      animation: spin 1.3s linear infinite;
+      margin: 0 auto 20px;
+      position: relative;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .loader-text {
+      font-size: 1.2rem;
+      color: #e6c45e;
+      letter-spacing: 1px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-container" id="loader">
+    <div class="gold-ring"></div>
+    <div class="loader-text">Unveiling the brilliance...</div>
+  </div>
+
+  <script>
+    // Fade out and redirect
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('fade-out');
+    }, 8000);
+
+    setTimeout(() => {
+      window.location.href = "product.html"; // Replace with your actual next page
+    }, 10000);
+  </script>
+</body>
+</html>

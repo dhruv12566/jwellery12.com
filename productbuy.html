@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment Form with Popup</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('./product/luxury-jewellery-display.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .form-container {
+      color: white;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: rgba(92, 92, 92, 0.2); 
+  backdrop-filter: blur(5px); 
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      box-sizing: border-box;
+    }
+
+    .payment-methods {
+      margin-top: 1rem;
+    }
+
+    .payment-methods label {
+      font-weight: normal;
+      margin-right: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+
+    .payment-details {
+      margin-top: 1rem;
+      display: none;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.7rem;
+      width: 100%;
+      font-size: 1.1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Modal Styles */
+    #popupModal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: white;
+      padding: 2rem 3rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    #popupModal.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Overlay */
+    #modalOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+    }
+
+    #modalOverlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Payment Details</h2>
+    <form id="paymentForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <div class="payment-methods">
+        <label><input type="radio" name="paymentMethod" value="card" /> Credit/Debit Card</label>
+        <label><input type="radio" name="paymentMethod" value="netbanking" /> Net Banking</label>
+        <label><input type="radio" name="paymentMethod" value="upi" /> UPI</label>
+        <label><input type="radio" name="paymentMethod" value="cod" /> Cash on Delivery</label>
+      </div>
+
+      <!-- Card Details -->
+      <div id="cardDetails" class="payment-details">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" name="cardNumber" maxlength="16" pattern="\d{16}" placeholder="1234 5678 9012 3456" />
+      </div>
+
+      <!-- Net Banking Details -->
+      <div id="netBankingDetails" class="payment-details">
+        <label for="netBankSelect">Select Bank</label>
+        <select id="netBankSelect" name="netBankSelect">
+          <option value="">-- Select Bank --</option>
+          <option value="bank1">BOI</option>
+          <option value="bank2">BOB</option>
+          <option value="bank3">PNB</option>
+        </select>
+      </div>
+
+      <!-- UPI Details -->
+      <div id="upiDetails" class="payment-details">
+        <label for="upiId">UPI ID</label>
+        <input type="text" id="upiId" name="upiId" placeholder="example@upi" />
+      </div>
+
+      <button type="submit">Make Payment</button>
+    </form>
+  </div>
+
+  <!-- Popup modal and overlay -->
+  <div id="modalOverlay"></div>
+  <div id="popupModal">Processing Payment...</div>
+
+  <script>
+    const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+    const cardDetails = document.getElementById('cardDetails');
+    const netBankingDetails = document.getElementById('netBankingDetails');
+    const upiDetails = document.getElementById('upiDetails');
+
+    const popup = document.getElementById('popupModal');
+    const overlay = document.getElementById('modalOverlay');
+
+    function hideAllDetails() {
+      cardDetails.style.display = 'none';
+      netBankingDetails.style.display = 'none';
+      upiDetails.style.display = 'none';
+      document.getElementById('cardNumber').required = false;
+      document.getElementById('netBankSelect').required = false;
+      document.getElementById('upiId').required = false;
+    }
+
+    paymentRadios.forEach((radio) => {
+      radio.addEventListener('change', () => {
+        hideAllDetails();
+        if (radio.value === 'card') {
+          cardDetails.style.display = 'block';
+          document.getElementById('cardNumber').required = true;
+        } else if (radio.value === 'netbanking') {
+          netBankingDetails.style.display = 'block';
+          document.getElementById('netBankSelect').required = true;
+        } else if (radio.value === 'upi') {
+          upiDetails.style.display = 'block';
+          document.getElementById('upiId').required = true;
+        }
+      });
+    });
+
+    function validateUPI(upi) {
+      const upiRegex = /^[\w.\-]+@[\w]+$/;
+      return upiRegex.test(upi);
+    }
+
+    document.getElementById('paymentForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+      if (!selectedMethod) {
+        alert('Please select a payment method.');
+        return;
+      }
+
+      if (selectedMethod.value === 'card') {
+        const cardNum = document.getElementById('cardNumber').value.trim();
+        if (!/^\d{16}$/.test(cardNum)) {
+          alert('Please enter a valid 16-digit card number.');
+          return;
+        }
+      } else if (selectedMethod.value === 'netbanking') {
+        const bank = document.getElementById('netBankSelect').value;
+        if (!bank) {
+          alert('Please select your bank for Net Banking.');
+          return;
+        }
+      } else if (selectedMethod.value === 'upi') {
+        const upiId = document.getElementById('upiId').value.trim();
+        if (!validateUPI(upiId)) {
+          alert('Please enter a valid UPI ID (e.g., name@bank).');
+          return;
+        }
+      }
+
+      // Show popup and overlay
+      popup.textContent = 'Processing Payment...';
+      popup.classList.add('show');
+      overlay.classList.add('show');
+
+      // Show success after 2s
+      setTimeout(() => {
+        popup.textContent = 'Payment Successful! ✅';
+      }, 2000);
+
+      // Redirect after 3.5s
+      setTimeout(() => {
+        window.location.href = 'shipping.html';
+      }, 3500);
+    });
+  </script>
+
+</body>
+</html>

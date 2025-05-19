@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us | Sparkle Jewels</title>
+
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Swiper (Testimonial Carousel) -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <style>
+    :root {
+      --gold: #d4af37;
+      --light: #fffdf8;
+      --dark: #1c1c1c;
+      --text: #333;
+    }
+
+    body {
+        background-color: aliceblue;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: var(--light);
+      color: var(--text);
+    }
+
+    header {
+      background: url('https://images.unsplash.com/photo-1620070501949-1d9e4c7a9c4e?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    header .hero-text {
+      z-index: 1;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 40px;
+    }
+
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+    }
+
+    .about-text {
+      flex: 1;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .stat {
+      font-size: 2rem;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .swiper {
+      margin-top: 50px;
+    }
+
+    .swiper-slide {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+    }
+
+    .swiper-slide p {
+      font-style: italic;
+    }
+
+    .swiper-slide h4 {
+      margin-top: 10px;
+      color: var(--gold);
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 80px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .about {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header>
+    <div class="hero-text">
+      <h1>About Tejas Jewels</h1>
+      <p>Where craftsmanship meets elegance</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- About Section -->
+    <h2 class="section-title" data-aos="fade-up">Our Story</h2>
+    <div class="about" data-aos="fade-right">
+      <img src="https://images.unsplash.com/photo-1600180758890-dba1d94fa309?auto=format&fit=crop&w=800&q=80" alt="Crafting Jewelry">
+      <div class="about-text">
+        <p>
+          Tejas Jewels began with a passion to deliver timeless elegance to every soul.
+          From humble beginnings in a small workshop, we’ve grown into a beloved name for luxury jewelry.
+        </p>
+        <p>
+          Our creations blend old-world artistry with cutting-edge design, using ethically sourced gemstones and precious metals.
+          Every piece is a tribute to the stories you carry and the love you share.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats" data-aos="zoom-in">
+      <div>
+        <div class="stat" data-count="10">0</div>
+        <div class="stat-label">Years of Legacy</div>
+      </div>
+      <div>
+        <div class="stat" data-count="500">0</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div>
+        <div class="stat" data-count="10">0</div>
+        <div class="stat-label">Unique Collections</div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
+    <div class="swiper mySwiper" data-aos="fade-up">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <p>"Absolutely stunning rings! Sparkle Jewels made our special day even more memorable."</p>
+          <h4>- Ayesha R.</h4>
+        </div>
+        <div class="swiper-slide">
+          <p>"The craftsmanship is next-level. You can feel the love and skill in every piece."</p>
+          <h4>- Neha M.</h4>
+        </div>
+        <div class="swiper-slide">
+          <p>"Timeless, beautiful, and uniquely mine. Highly recommended!"</p>
+          <h4>- Arjun S.</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Sparkle Jewels | Handcrafted Elegance
+  </footer>
+
+  <!-- JS: AOS + Swiper + Counter -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Animate on Scroll
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // Swiper Carousel
+    const swiper = new Swiper('.mySwiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 10000,
+        disableOnInteraction: false
+      }
+    });
+
+    // Animated Counter
+    const counters = document.querySelectorAll('.stat');
+    const speed = 200;
+
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-count');
+          const count = +counter.innerText;
+          const increment = Math.ceil(target / speed);
+
+          if (count < target) {
+            counter.innerText = count + increment;
+            setTimeout(updateCount, 20);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    };
+
+    // Trigger counters when visible
+    let shown = false;
+    window.addEventListener('scroll', () => {
+      const stats = document.querySelector('.stats');
+      const statsTop = stats.getBoundingClientRect().top;
+      if (!shown && statsTop < window.innerHeight - 100) {
+        animateCounters();
+        shown = true;
+      }
+    });
+  </script>
+
+</body>
+</html>
